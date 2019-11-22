@@ -12,5 +12,6 @@
 </head>
 <body>
     <h1>Läheb testimiseks</h1>
+    <p>palun tööta</p>
 </body>
 </html>
