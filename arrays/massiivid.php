@@ -70,3 +70,23 @@ echo "<br><br>";
 //tulemuse sassi ajamiseks
 shuffle($nimed);
 var_dump($nimed);
+echo "<br><br>";
+//mitmemõõtmelised massiivid
+$riigid = array(
+    'Eesti'=>array('pealinn'=>'Tallinn','rahvaarv'=>1340000),
+    'Austria'=>array('pealinn'=>'Viin','rahvarv'=>8356700),
+    'Belgia'=>array('pealinn'=>'Brüssel', 'rahvaarv'=>10827500)
+);
+var_dump($riigid);
+echo "<br><br>";
+// Kuvame näiteks Eesti pealinna:
+echo $riigid['Eesti']['pealinn'];
+echo "<br><br>";
+//foreach, kõikide andmete kuvamiseks
+foreach ($riigid as $riik=>$andmed){
+    echo "$riik - ";
+    foreach($andmed as $detailid){
+        echo "$detailid ";
+    }
+    echo "<br>";
+}
