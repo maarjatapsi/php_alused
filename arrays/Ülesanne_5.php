@@ -33,3 +33,16 @@ echo "<br>";
 echo "<hr>";
 //algab raamatud
 echo "<h1>Raamatud</h1>";
+$raamatud = array('1'=>array('Autor'=>'Tema', 'Zanr' =>'biograafia','Ilmumisaasta'=> 2019),
+    '2'=>array('Autor'=>'Mina', 'Zanr' =>'Komöödia','Ilmumisaasta'=> 2012),
+    '3'=>array('Autor'=>'Sina', 'Zanr' =>'Komöödia','Ilmumisaasta'=> 2016));
+ksort($raamatud);
+
+foreach ($raamatud as $raamat=>$andmed){
+    echo "Pealkiri: " .$raamat. "<br>" ;
+    foreach($andmed as $detailid => $nimi) {
+        echo $detailid. ": " ;
+        echo $nimi . "<br>";
+    }
+    echo "<br>";
+}
