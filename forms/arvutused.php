@@ -1,9 +1,42 @@
 <?php
 // kontrollime andmed
-echo '<pre>';
-print_r($GET);
-echo '</pre>';
+//echo '<pre>';
+//print_r($GET);
+//echo '</pre>';
 
+//arvutusfunktsioonid
+function keraRuumala($raadius) {
+    $ruumala = 4 * pi() * pow($raadius, 2); // 4 pi raadius ruudus
+    return round($ruumala, 2); // ümardame - 2 koma kohta
+}
+
+function koonuseRuumala($raadius, $korgus) {
+    $pohjaPindala = pi() * pow($raadius, 2); //pi raadius
+    return round($pohjaPindala, 2);
+}
+
+function silindriRuumala($raadius, $korgus) {
+    $pohjaPindala = pi() * pow($raadius, 2); //pi raadius
+    return round($pohjaPindala, 2);
+}
+
+//arvutame ja väljastame tulemused
+//vormi andmed
+    $keraRaadius = $_GET['kera-raadius'];
+    $koonuseRaadius= $_GET['koonuse-raadius'];
+    $koonuseKorgus = $_GET['koonuse-kõrgus'];
+    $silindriRaadius = $_GET['silindri-raadius'];
+    $silindriKorgus = $_GET['silindri-kõrgus'];
+
+    //arvutused
+$keraRuumala = keraRuumala($keraRaadius);
+$koonuseRuumala = koonuseRuumala($koonuseRaadius, $koonuseKorgus);
+$silindriRuumala = silindriRuumala($silindriRaadius, $silindriKorgus);
+
+// väljasta
+echo 'Kera raadiusega '.$keraRaadius.' ruumala = '.$keraRuumala.'.<br>';
+echo 'Koonuse raadiusega '.$koonuseRaadius.' ja kõrgusega '.$koonuseKorgus . ' ruumala = ' .$koonuseRuumala. '.<br>';
+echo 'Silindri raadiusega ' .$silindriRaadius . ' ja kõrgusega ' . $silindriKorgus . ' ruumala =  ' .$silindriRaadius.' .<br>';
 ?>
 
 <!doctype html>
