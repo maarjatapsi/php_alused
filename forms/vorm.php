@@ -12,7 +12,7 @@
     <title>06 - PHP - Vormid</title>
 </head>
 <body>
-<h1>Pood OÜ</h1>
+<h1>Arvutused</h1>
 <form action="tellimine.php" method="get">
     Toode 1 <input type="text" name="t1"><br>
     Toode 2 <input type="text" name="t2"><br>
