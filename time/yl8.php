@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Tallinn');
 echo '<h3>Kuva kuupäev ja kellaaeg formaadis 20.03.2013 12:31</h3>';
 echo date('d.m.Y G:i' , time());
 echo '<h3>Kuva tänane eestikeelne nädalapäev, N: kolmapäev</h3>';
@@ -67,7 +68,7 @@ if($vanusAastates % 5 == 0) {
     echo $jargmineAasta. ' sul pole juubelit';
 }
 echo '<h3>Koosta kood, mis tervitab sind vastavalt ajale. N: 8:00+ “Tere hommikust!”, 13:00+ “Tere päevast!” ja 17:00+ “Tere õhtust!”</h3>';
-date_default_timezone_set('Europe/Tallinn');
+
 $kell = date('H');
 if($kell >= 8 and $kell < 13) {
     echo 'Tere hommikust!';
