@@ -22,6 +22,7 @@ function query($sql, $link){
     return $result;
 }
 
+
 // SELECT, SHOW,DESCRIBE or EXPLAIN sql jaoks
 function getDATA($sql, $link){
     $result = query($sql, $link); // saadame pärinu meie funktsiooni abil
