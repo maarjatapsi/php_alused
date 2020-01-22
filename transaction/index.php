@@ -1,6 +1,5 @@
 <?php
 
-require_once ('conf.php');
 require_once('conn.php');
 
 $link = connect(HOSTNAME, USERNAME, USERPASS, DBNAME);
@@ -148,7 +147,7 @@ function table($table, $attrs) {
 if ($_POST['submit'] === 'Register account') {
     $name = $_POST['name'];
     $balance = $_POST['balance'];
-    $name = str_replace("'", '"', $nimi);
+    $name = str_replace("'", '"', $name);
     $balance = str_replace("'", '"', $balance);
     $sql = "call registerAccount('$name', '$balance');";
     query($link, $sql);
@@ -158,7 +157,7 @@ if ($_POST['submit'] === 'Register product') {
     $balance = $_POST['balance'];
     $stocks = $_POST['stocks'];
     $price = $_POST['price'];
-    $name = str_replace("'", '"', $nimi);
+    $name = str_replace("'", '"', $name);
     $balance = str_replace("'", '"', $balance);
     $stocks = str_replace("'", '"', $stocks);
     $price = str_replace("'", '"', $price);

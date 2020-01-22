@@ -1,5 +1,5 @@
 <?php
-
+require_once('conf.php');
 function connect($host, $user, $pass, $db) {
     $link = mysqli_connect($host, $user, $pass, $db);
     if (!$link) {
