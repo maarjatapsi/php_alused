@@ -93,7 +93,6 @@ function table($table, $attrs) {
             left: 600px;
             padding: 20px;
             width: 200px;
-            height: 220px;
             background: var(--sec-color);
             border-radius: 10px;
             text-align: center;
@@ -132,37 +131,51 @@ function table($table, $attrs) {
         }
 
         #register__product{
-            height: 310px;
             left: 900px;
         }
 
         #purchase{
             left: 1200px;
-            height: 200px;
         }
     </style>
 </head>
 <body>
 <?php
-if ($_POST['submit'] === 'Register account') {
-    $name = $_POST['name'];
-    $balance = $_POST['balance'];
-    $name = str_replace("'", '"', $name);
-    $balance = str_replace("'", '"', $balance);
-    $sql = "call registerAccount('$name', '$balance');";
-    query($link, $sql);
-}
-if ($_POST['submit'] === 'Register product') {
-    $name = $_POST['name'];
-    $balance = $_POST['balance'];
-    $stocks = $_POST['stocks'];
-    $price = $_POST['price'];
-    $name = str_replace("'", '"', $name);
-    $balance = str_replace("'", '"', $balance);
-    $stocks = str_replace("'", '"', $stocks);
-    $price = str_replace("'", '"', $price);
-    $sql = "call registerProduct('$name', '$price', '$stocks', '$balance');";
-    query($link, $sql);
+switch ($_POST['submit']) {
+    case 'Register account':
+        $name = $_POST['name'];
+        $balance = $_POST['balance'];
+        $name = str_replace("'", '"', $name);
+        $balance = str_replace("'", '"', $balance);
+        $sql = "call registerAccount('$name', '$balance');";
+        query($link, $sql);
+        break;
+    case 'Clear accounts':
+        query($link, 'truncate ACCOUNTS;');
+        break;
+    case 'Register product':
+        $name = $_POST['name'];
+        $balance = $_POST['balance'];
+        $stocks = $_POST['stocks'];
+        $price = $_POST['price'];
+        $name = str_replace("'", '"', $name);
+        $balance = str_replace("'", '"', $balance);
+        $stocks = str_replace("'", '"', $stocks);
+        $price = str_replace("'", '"', $price);
+        $sql = "call registerProduct('$name', '$price', '$stocks', '$balance');";
+        query($link, $sql);
+        break;
+    case 'Clear products':
+        query($link, 'truncate PRODUCTS;');
+        break;
+    case 'Buy':
+        $acc_id = $_POST['acc_id'];
+        $pro_id = $_POST['pro_id'];
+        query($link, "call purchase($pro_id, $acc_id)");
+        break;
+    case 'Clear purchases':
+        query($link, 'truncate PURCHASES;');
+        break;
 }
 ?>
 <aside>
@@ -195,8 +208,9 @@ if ($_POST['submit'] === 'Register product') {
         <h2>Register Account</h2>
         <form method="POST">
             <input type='text' name='name' placeholder='name' />
-            <input type='number' name='balance' placeholder='balance' />
+            <input type='number' name='balance' value=1000 placeholder='balance' />
             <input type='submit' name='submit' value='Register account' />
+            <input type='submit' name='submit' value='Clear accounts' />
         </form>
     </div>
 
@@ -206,8 +220,9 @@ if ($_POST['submit'] === 'Register product') {
             <input type='text' name='name' placeholder='product name' />
             <input type='number' name='price' placeholder='price' />
             <input type='number' name='stocks' placeholder='stocks' />
-            <input type='number' name='balance' placeholder='balance' />
+            <input type='number' name='balance' placeholder='balance' value='0'/>
             <input type='submit' name='submit' value='Register product' />
+            <input type='submit' name='submit' value='Clear products' />
         </form>
     </div>
 
@@ -217,6 +232,7 @@ if ($_POST['submit'] === 'Register product') {
             <input type='number' name='acc_id' placeholder='account id' />
             <input type='number' name='pro_id' placeholder='product id' />
             <input type='submit' name='submit' value='Buy' />
+            <input type='submit' name='submit' value='Clear purchases' />
         </form>
     </div>
 
